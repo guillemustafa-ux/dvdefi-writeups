@@ -1,0 +1,13 @@
+# Upstream challenge repo used only as a local harness to verify the exploits.
+# Not redistributed here — see README "Reproduce" for how to clone it yourself.
+_work/
+
+# Foundry / build
+out/
+cache/
+broadcast/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
