@@ -8,6 +8,9 @@ cache/
 broadcast/
 *.log
 
+# Local tooling state
+.atl/
+
 # OS
 .DS_Store
 Thumbs.db

@@ -17,7 +17,7 @@ challenge's on-chain success condition. For every challenge here there is:
 It's the offensive counterpart to my defensive work (see *Related*): breaking
 these teaches exactly the failure modes I then harden against in my own contracts.
 
-## Challenges solved (7)
+## Challenges solved (9)
 
 | # | Challenge | Vulnerability class | Write-up |
 |---|-----------|---------------------|----------|
@@ -28,21 +28,23 @@ these teaches exactly the failure modes I then harden against in my own contract
 | 05 | The Rewarder | Broken batch-claim idempotency → reward double-spend | [05-the-rewarder.md](./writeups/05-the-rewarder.md) |
 | 06 | Selfie | Flash-loan governance capture via spot voting power | [06-selfie.md](./writeups/06-selfie.md) |
 | 07 | Puppet | Spot-price oracle manipulation on a thin Uniswap V1 pair | [07-puppet.md](./writeups/07-puppet.md) |
+| 08 | Compromised | Leaked oracle signer keys → median price manipulation | [08-compromised.md](./writeups/08-compromised.md) |
+| 09 | Puppet V2 | Spot-price oracle manipulation on a thin Uniswap V2 pool | [09-puppet-v2.md](./writeups/09-puppet-v2.md) |
 
-These seven cover the foundational DeFi attack surface — flash loans, arbitrary
-calls, oracle manipulation, governance capture, meta-tx spoofing and reward
-accounting. The remaining v4 challenges (Compromised, Puppet V2/V3, Free Rider,
-Backdoor, Climber, Wallet Mining, ABI Smuggling, Shards, Curvy Puppet, Withdrawal)
-are **not yet done** and will be added as I work through them — this README tracks
-real progress, not aspiration.
+These nine cover the foundational DeFi attack surface — flash loans, arbitrary
+calls, oracle manipulation, governance capture, meta-tx spoofing, reward
+accounting and signer-key compromise. The remaining v4 challenges (Puppet V3,
+Free Rider, Backdoor, Climber, Wallet Mining, ABI Smuggling, Shards, Curvy
+Puppet, Withdrawal) are **not yet done** and will be added as I work through
+them — this README tracks real progress, not aspiration.
 
 ## Evidence
 
-All seven exploits pass against a clean v4.1.0 checkout (Foundry `forge 1.7.1`,
+All nine exploits pass against a clean v4.1.0 checkout (Foundry `forge 1.7.1`,
 `solc 0.8.25`):
 
 ```
-Ran 7 test suites: 7 tests passed, 0 failed, 0 skipped (7 total tests)
+Ran 9 test suites: 9 tests passed, 0 failed, 0 skipped (9 total tests)
 
 [PASS] test_unstoppable()    (gas: 66,791)
 [PASS] test_naiveReceiver()  (gas: 398,237)
@@ -51,6 +53,8 @@ Ran 7 test suites: 7 tests passed, 0 failed, 0 skipped (7 total tests)
 [PASS] test_theRewarder()    (gas: 34,954,186)
 [PASS] test_selfie()         (gas: 685,520)
 [PASS] test_puppet()         (gas: 218,209)
+[PASS] test_compromised()    (gas: 237,462)
+[PASS] test_puppetV2()       (gas: 247,343)
 ```
 
 ## Reproduce
